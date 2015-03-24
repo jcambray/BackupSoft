@@ -15,6 +15,10 @@ namespace BackupSoftGraphics.Database.Model
         public DateTime? LastSaveDate { get; set; }
         public int Size { get; set; }
 
+        public BackupFolder Children { get; set; }
+
+        public bool? IsChecked { get; set; }
+
         public List<BackupFile> FilesList { get; set; }  
         
     }

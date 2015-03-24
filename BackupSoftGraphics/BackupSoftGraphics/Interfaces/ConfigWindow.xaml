@@ -3,11 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:y="clr-namespace:BackupSoftGraphics.Properties"
         xmlns:local =  "clr-namespace:BackupSoftGraphics"
-        Title="Paramètres" Height="775.4" Width="1321.4"
+        xmlns:localModel="clr-namespace:BackupSoftGraphics.Database.Model"
+        Title="Paramètres" Height="Auto" Width="Auto"
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
-        WindowState="Maximized"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown" >
+        WindowState="Normal"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown" Icon="/BackupSoftGraphics;component/images/Blue Hardrive.ico" >
     <Grid Background="{StaticResource AppBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -75,13 +76,13 @@
             </GroupBox>
             </StackPanel>    
             <GroupBox Header="Choix des fichiers" HorizontalAlignment="Left" Width="Auto" Grid.Column="1" Grid.Row="0">
-                <TreeView Name="folderTreeView" ItemsSource="{Binding Path=TreeViewItemModelList}" SelectedItemChanged="folderTreeView_SelectedItemChanged"  HorizontalAlignment="Left" Height="397" Margin="10,10,0,0" VerticalAlignment="Top" Width="496">
+                <TreeView Name="folderTreeView" ItemsSource="{Binding Path=BackupFoldersList}" SelectedItemChanged="folderTreeView_SelectedItemChanged"  HorizontalAlignment="Left" Height="397"  VerticalAlignment="Top" Width="496">
                     <TreeView.ItemTemplate>
-                        <HierarchicalDataTemplate DataType="{x:Type local:TreeViewItemModel}" ItemsSource="{Binding Path=Children}">
-                            <TreeViewItem Foreground="#FF58AFFF"  IsExpanded="{Binding IsNotEmpty}" CheckBox.Click="TreeViewItem_Click">
+                        <HierarchicalDataTemplate DataType="{x:Type localModel:BackupFolder}" ItemsSource="{Binding Path=Children}">
+                            <TreeViewItem Foreground="#FF58AFFF"  CheckBox.Click="TreeViewItem_Click">
                                 <TreeViewItem.Header>
                                     <StackPanel Orientation="Horizontal">
-                                        <Image  Source="image\dossier_windows_small.jpg"/>
+                                        <Image  Source="/BackupSoftGraphics;component/images/dossier_windows_small.jpg"/>
                                         <CheckBox Name="cbTreeViewItem" Focusable="False" IsChecked="{Binding Path=IsChecked}"/>
                                         <ContentPresenter  Content="{Binding Name}" />
                                     </StackPanel>

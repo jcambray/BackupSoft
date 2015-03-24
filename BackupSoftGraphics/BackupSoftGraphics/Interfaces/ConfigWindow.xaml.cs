@@ -32,16 +32,16 @@ namespace BackupSoftGraphics
         private const int MAX_HOUR = 23;
         private const int MAX_MINUTE = 59;
         private const int MIN_VALUE = 0;
-        private List<BackupFolder> backupFoldersList;
+        private BindingList<BackupFolder> backupFoldersList;
         public event PropertyChangedEventHandler PropertyChanged;
         private BindingList<TreeViewItemModel> treeViewItemModelList;
-        public BindingList<TreeViewItemModel> TreeViewItemModelList
+        public BindingList<BackupFolder> BackupFoldersList
         {
-            get { return treeViewItemModelList; }
+            get { return backupFoldersList; }
             set
             {
-                treeViewItemModelList = value;
-                RaisePropertyChangedEvent("FolderSaveItems");
+                backupFoldersList = value;
+                RaisePropertyChangedEvent("backupFoldersList");
             }
         }
 
@@ -58,14 +58,27 @@ namespace BackupSoftGraphics
                 cbKeepSave.Items.Add(i);
             cbKeepSave.SelectedIndex = 0;
 
-            treeViewItemModelList = new BindingList<TreeViewItemModel>();
-            backupFoldersList = Application.DBContext.BackupFolders.ToList();
+          
+            backupFoldersList = GetBackupFilesFromDBB();
 
-            new DirectoryInfo(System.IO.Path.Combine(Application.Config.SearchRoot, Environment.UserName))
-                .GetDirectories()
-                .ToList()
-                .ForEach(I => TreeViewItemModelList.Add(new TreeViewItemModel(I.FullName,null)));
+            //new DirectoryInfo(System.IO.Path.Combine(Application.Config.SearchRoot, Environment.UserName))
+            //    .GetDirectories()
+            //    .ToList()
+            //    .ForEach(I => TreeViewItemModelList.Add(new TreeViewItemModel(I.FullName,null)));
             DataContext = this;
+        }
+
+        private BindingList<BackupFolder> GetBackupFilesFromDBB()
+        {
+            try
+            {
+               return  new BindingList<BackupFolder>(Application.DBContext.BackupFolders.ToList());
+            }
+            catch(Exception e)
+            {
+                Log.Write("Une erreur est survenur lors d'une tentative d'interrogation de la base de données: " + Environment.NewLine + e.Message);
+                return new BindingList<BackupFolder>();
+            }
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
