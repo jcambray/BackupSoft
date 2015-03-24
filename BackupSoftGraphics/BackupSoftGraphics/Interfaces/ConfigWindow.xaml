@@ -92,9 +92,9 @@
                 </TreeView>
             </GroupBox>
         </Grid >
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Height="Auto">
-            <Button Name="btnOK" Content="OK" Width="75" Click="btnOK_Click" />
-            <Button Name="btnCancel" Margin="10,0,0,0" Content="Annuler"   Width="75"  Click="btnCancel_Click"/>
-        </StackPanel>
+        <Grid  Grid.Column="1" Grid.Row="2"  Height="Auto" Width="Auto">
+            <Button Name="btnOK" Content="OK" Width="75" Click="btnOK_Click" HorizontalAlignment="Right" Margin="0,0,80,0"/>
+            <Button Name="btnCancel"  Content="Annuler"   Width="75"  Click="btnCancel_Click" HorizontalAlignment="Right"/>
+        </Grid>
     </Grid>
 </Window>

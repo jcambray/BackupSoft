@@ -10,6 +10,7 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
     <Grid Name="mainWindowGrid" Background="{StaticResource AppBackground}">
+        <Label Content="AUTOMOTOR Backup" Margin="58,63,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" FontStyle="Italic" Width="232"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="125,119,0,0" VerticalAlignment="Top"  Name="lbUsername" FontFamily="Comic Sans MS" FontStyle="Italic" Background="{x:Null}" FontSize="24" Foreground="White"/>
         <Button Name="btnSave" Content="Lancer une sauvegarde" Width="Auto" Margin="58,396,59.2,28.6"  
                     FontSize="15" Grid.ColumnSpan="2" Click="btnSave_Click"/>
@@ -26,6 +27,5 @@
             <MenuItem Header="Réduire" Name="menuReduire" Click="menuReduire_Click"/>
         </Menu>
         <Label Name="lbDateProchaineSauvegarde1" Content="Label" HorizontalAlignment="Center" Margin="35,259,18.2,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <Label Content="AUTOMOTOR Backup" Margin="58,63,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" FontStyle="Italic" Width="232"/>
     </Grid>
 </Window>

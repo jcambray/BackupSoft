@@ -32,8 +32,7 @@ namespace BackupSoftGraphics
         private const int MAX_HOUR = 23;
         private const int MAX_MINUTE = 59;
         private const int MIN_VALUE = 0;
-        private List<string> folders;
-        private List<string> files;
+        private List<BackupFolder> backupFoldersList;
         public event PropertyChangedEventHandler PropertyChanged;
         private BindingList<TreeViewItemModel> treeViewItemModelList;
         public BindingList<TreeViewItemModel> TreeViewItemModelList
@@ -60,8 +59,7 @@ namespace BackupSoftGraphics
             cbKeepSave.SelectedIndex = 0;
 
             treeViewItemModelList = new BindingList<TreeViewItemModel>();
-            folders = Serialization.deserializeXML("folders.xml");
-            files = Serialization.deserializeXML("files.xml");
+            backupFoldersList = Application.DBContext.BackupFolders.ToList();
 
             new DirectoryInfo(System.IO.Path.Combine(Application.Config.SearchRoot, Environment.UserName))
                 .GetDirectories()
@@ -146,17 +144,17 @@ namespace BackupSoftGraphics
             {
                 if (i.IsChecked == null)
                 {
-                    if (!folders.Contains(i.Folder.FullName))
-                        list.Add(i.Folder.FullName);
-                    ProcessNode(i,list);
+                    //if (!folders.Contains(i.Folder.FullName))
+                    //    list.Add(i.Folder.FullName);
+                    //ProcessNode(i,list);
                     continue;
                 }
                 
                 if ((bool)i.IsChecked)
                 {
-                    if (!folders.Contains(i.Folder.FullName))
-                        list.Add(i.Folder.FullName);
-                    ProcessNode(i,list);
+                    //if (!folders.Contains(i.Folder.FullName))
+                    //    list.Add(i.Folder.FullName);
+                    //ProcessNode(i,list);
                 }
             }
             
