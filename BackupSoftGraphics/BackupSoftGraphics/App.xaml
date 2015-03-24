@@ -1,0 +1,42 @@
+﻿<Application x:Class="BackupSoftGraphics.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml"
+             SessionEnding="Application_SessionEnding">
+    <Application.Resources>
+        <Style x:Key="globalBackground" TargetType="{x:Type Control}">
+            <Setter Property="Control.Background" Value="#FF58AFFF"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="#FF58AFFF"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="BorderBrush" Value="White"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="Width" Value="Auto"/>     
+        </Style>
+        <Style TargetType="MenuItem">
+            <Setter Property="Foreground" Value="#FF58AFFF"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="White"/>
+        </Style>
+        <Style TargetType="Menu">
+            <Setter Property="BorderBrush" Value="White"/>
+        </Style>
+        <Style x:Key="tabControlStyle" TargetType="{x:Type TabControl}">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Background" Value="#FF58AFFF"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </Application.Resources>
+</Application>
+
