@@ -1,41 +1,38 @@
 ﻿<Application x:Class="BackupSoftGraphics.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml"
+             StartupUri="Interfaces\MainWindow.xaml"
              SessionEnding="Application_SessionEnding">
     <Application.Resources>
+        <LinearGradientBrush x:Key="AppBackground" StartPoint="1.5,0" EndPoint="1.5,1">
+            <GradientStop Color="White" Offset="0" />
+            <GradientStop Color="#FF58AFFF" Offset="1" />
+        </LinearGradientBrush>
         <Style x:Key="globalBackground" TargetType="{x:Type Control}">
             <Setter Property="Control.Background" Value="#FF58AFFF"/>
         </Style>
         <Style TargetType="Button">
-            <Setter Property="Foreground" Value="#FF58AFFF"/>
+            <Setter Property="Foreground" Value="#2E64FE"/>
             <Setter Property="Background" Value="White"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
-            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderBrush" Value="#2E64FE"/>
         </Style>
         <Style TargetType="Label">
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="#2E64FE"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="Width" Value="Auto"/>     
         </Style>
         <Style TargetType="MenuItem">
-            <Setter Property="Foreground" Value="#FF58AFFF"/>
+            <Setter Property="Foreground" Value="#2E64FE"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderBrush" Value="#2E64FE"/>
         </Style>
         <Style TargetType="Menu">
-            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderBrush" Value="#2E64FE"/>
         </Style>
         <Style x:Key="tabControlStyle" TargetType="{x:Type TabControl}">
             <Setter Property="Background" Value="White"/>
-        </Style>
-        <Style TargetType="{x:Type GroupBox}">
-            <Setter Property="Background" Value="#FF58AFFF"/>
-        </Style>
-        <Style TargetType="{x:Type CheckBox}">
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
-            <Setter Property="Foreground" Value="White"/>
         </Style>
     </Application.Resources>
 </Application>

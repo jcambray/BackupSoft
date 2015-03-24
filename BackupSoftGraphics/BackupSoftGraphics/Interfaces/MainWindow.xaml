@@ -6,27 +6,26 @@
         Loaded="mainWindow_Loaded"
         WindowStyle="SingleBorderWindow"
         MouseLeftButtonDown="mainWindow_MouseLeftButtonDown"
-        Background="Transparent"
-        Closing="mainWindow_Closing" Icon="images/Blue Hardrive.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Border BorderThickness="1" Background="#FF58AFFF" BorderBrush="White">
-        <Grid Name="mainWindowGrid" Background="Transparent">
-            <Label Content="Label" HorizontalAlignment="Left" Margin="125,119,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.662,0.937" Name="lbUsername" FontFamily="Comic Sans MS" FontStyle="Italic" Background="{x:Null}" FontSize="24" Foreground="White"/>
-            <Button Name="btnSave" Content="Lancer une sauvegarde" Width="Auto" Margin="58,396,59.2,28.6"  
+        Closing="mainWindow_Closing"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid Name="mainWindowGrid" Background="{StaticResource AppBackground}">
+        <Label Content="Label" HorizontalAlignment="Left" Margin="125,119,0,0" VerticalAlignment="Top"  Name="lbUsername" FontFamily="Comic Sans MS" FontStyle="Italic" Background="{x:Null}" FontSize="24" Foreground="White"/>
+        <Button Name="btnSave" Content="Lancer une sauvegarde" Width="Auto" Margin="58,396,59.2,28.6"  
                     FontSize="15" Grid.ColumnSpan="2" Click="btnSave_Click"/>
-            <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Name="mainWindowMenu" Width="{Binding  ElementName=mainWindowGrid, Path=ActualWidth}" BorderBrush="#FF0083FB" Background="White" Grid.ColumnSpan="2">
-                <MenuItem Header="Fichier" Name="menuFichier" Height="{Binding ElementName=mainWindowMenu,Path=ActualHeight}">
-                    <MenuItem Header="Paramètres" Name="menuParamètres" Click="menuParamètres_Click"/>
-                    <MenuItem Header="Mot de passe" Name="menuMDP">
-                        <MenuItem Header="Admin" Name="menuMDPAdmin" Click="menuMDPAdmin_Click"/>
-                        <MenuItem  Header="Utilisateur" Name="menuMDPUser" Click="menuMDPUser_Click"/>
-                    </MenuItem>
-                    <MenuItem Header="Quitter" Name="menuQuitter" Click="menuQuitter_Click"/>
+        <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Name="mainWindowMenu" Width="{Binding  ElementName=mainWindowGrid, Path=ActualWidth}" BorderBrush="#FF0083FB" Background="White" Grid.ColumnSpan="2">
+            <MenuItem Header="Fichier" Name="menuFichier" Height="{Binding ElementName=mainWindowMenu,Path=ActualHeight}">
+                <MenuItem Header="Paramètres" Name="menuParamètres" Click="menuParamètres_Click"/>
+                <MenuItem Header="Mot de passe" Name="menuMDP">
+                    <MenuItem Header="Admin" Name="menuMDPAdmin" Click="menuMDPAdmin_Click"/>
+                    <MenuItem  Header="Utilisateur" Name="menuMDPUser" Click="menuMDPUser_Click"/>
                 </MenuItem>
-                <MenuItem Name="menuConfigWindow" Header="Paramètres" Height="{Binding ElementName=mainWindowMenu, Path=ActualHeight}" Click="menuConfigWindow_Click"/>
-                <MenuItem Header="Réduire" Name="menuReduire" Click="menuReduire_Click"/>
-            </Menu>
-            <Label Name="lbDateProchaineSauvegarde1" Content="Label" HorizontalAlignment="Center" Margin="35,259,18.2,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-            <Label Content="AUTOMOTOR Backup" Margin="58,63,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" FontStyle="Italic" Width="232"/>
-        </Grid>
-    </Border>
+                <MenuItem Header="Quitter" Name="menuQuitter" Click="menuQuitter_Click"/>
+            </MenuItem>
+            <MenuItem Name="menuConfigWindow" Header="Paramètres" Height="{Binding ElementName=mainWindowMenu, Path=ActualHeight}" Click="menuConfigWindow_Click"/>
+            <MenuItem Header="Réduire" Name="menuReduire" Click="menuReduire_Click"/>
+        </Menu>
+        <Label Name="lbDateProchaineSauvegarde1" Content="Label" HorizontalAlignment="Center" Margin="35,259,18.2,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label Content="AUTOMOTOR Backup" Margin="58,63,0,0" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Left" FontStyle="Italic" Width="232"/>
+    </Grid>
 </Window>

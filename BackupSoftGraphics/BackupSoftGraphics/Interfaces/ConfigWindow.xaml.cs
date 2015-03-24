@@ -130,13 +130,14 @@ namespace BackupSoftGraphics
 
         private List<String> GetCheckedNodes()
         {
-            var checkedNodes = new List<String>();
+            //var checkedNodes = new List<String>();
           
-            foreach (TreeViewItemModel model in folderTreeView.ItemsSource)
-            {
-                ProcessNode(model,checkedNodes);
-            }
-            return checkedNodes;
+            //foreach (TreeViewItemModel model in folderTreeView.ItemsSource)
+            //{
+            //    ProcessNode(model,checkedNodes);
+            //}
+            //return checkedNodes;
+            return null;
         }
      
         private void ProcessNode(TreeViewItemModel item,List<string> list)

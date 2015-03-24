@@ -3,90 +3,98 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:y="clr-namespace:BackupSoftGraphics.Properties"
         xmlns:local =  "clr-namespace:BackupSoftGraphics"
-        Title="Paramètres" Height="500" Width="545"
+        Title="Paramètres" Height="775.4" Width="1321.4"
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
-        ResizeMode="NoResize"
-        Background="Transparent"
+        WindowState="Maximized"
         MouseLeftButtonDown="Window_MouseLeftButtonDown" >
-        <Border BorderBrush="White" BorderThickness="1" Background="#FF58AFFF">
-        <Grid Background="Transparent" Margin="5.2,0.2,-4.8,0.4">
-            <TabControl HorizontalAlignment="Left" Height="444" Margin="6,10,0,0" VerticalAlignment="Top" Width="522"
-                        Style="{StaticResource tabControlStyle}" >
-                <TabItem Header="paramètres" DataContext="{Binding Path=Application.Config}">
-                    <Grid Background="White" Margin="0,-1,0,1.4">
-                        <GroupBox Header="Sauvegarde" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Height="166" Width="496" FontFamily="Comic Sans MS">
-                            <Grid>
-                                <Button x:Name="btnParcourir" Content="Parcourir" HorizontalAlignment="Left" Margin="385,60,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.107,-0.538"/>
-                                <Label Content="Intervalle entre deux sauvegardes:" HorizontalAlignment="Left" Margin="49,4,0,0" VerticalAlignment="Top"/>
-                                <Label Content="jour(s)" HorizontalAlignment="Left" Margin="300,4,0,0" VerticalAlignment="Top"/>
-                                <Label Content="Heure de la sauvegarde:" HorizontalAlignment="Left" Margin="113,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.51,0.426" Width="142"/>
-                                <TextBox x:Name="tbHeure" Text="{Binding Path=heure}" HorizontalAlignment="Left" Height="23" Margin="260,34,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="24"/>
-                                <Label Content=":" HorizontalAlignment="Left" Margin="284,32,0,0" VerticalAlignment="Top" Width="15" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="tbMinute"  Text="{Binding Path=minute}" HorizontalAlignment="Left" Height="23" Margin="298,34,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="24"/>
-                                <Label x:Name="tbCibleSauvegarde" Content="Cible de la sauvegarde:" HorizontalAlignment="Left" Margin="117,58,0,0" VerticalAlignment="Top" Width="142"/>
-                                <TextBox Name="tbPath" HorizontalAlignment="Left" Height="23" Margin="260,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=path}"/>
-                                <Label Content="Nombre de sauvegarde à conserver:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,85,0,0"/>
-                                <ComboBox x:Name="cbKeepSave" SelectedValue="{Binding Path=nbSaves}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="39" Margin="260,88,0,0"/>
-                                <ComboBox x:Name="cbPeriod" SelectedValue="{Binding Path=period}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="39" Margin="260,6,0,0"/>
-                            </Grid>
-                        </GroupBox>
-                        <GroupBox Header="Général" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top" Height="61" Width="496">
-                            <CheckBox x:Name="cbAutoShutDown" Content="Eteindre le poste après sauvegarde" HorizontalAlignment="Left" Height="21" Margin="54,11,0,0" VerticalAlignment="Top" Width="227" FlowDirection="RightToLeft"/>
-                        </GroupBox>
-                        <GroupBox Header="Mails" HorizontalAlignment="Left" Margin="10,247,0,0" VerticalAlignment="Top" Height="160" Width="496">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="28*"/>
-                                    <RowDefinition Height="28*"/>
-                                    <RowDefinition Height="28*"/>
-                                    <RowDefinition Height="28*"/>
-                                    <RowDefinition Height="28*"/>
-                                    <RowDefinition Height="15*"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="193*"/>
-                                    <ColumnDefinition Width="290*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Content="Expediteur:" HorizontalAlignment="Left" Margin="118,3,0,0" VerticalAlignment="Top" Height="27" Width="75" Grid.ColumnSpan="2"/>
-                                <Label Content="Destinataires:" HorizontalAlignment="Left" Margin="103,3.6,0,0" VerticalAlignment="Top" Height="27" Width="90" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-                                <Label Content="Serveur SMTP:" HorizontalAlignment="Left" Margin="97,3.2,0,0" VerticalAlignment="Top" Height="27" Width="96" Grid.Row="2" Grid.ColumnSpan="2"/>
-                                <TextBox x:Name="tbExp" Text="{Binding Path=ExpAdress}" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" Margin="2.2,5,0,0" Grid.Column="1"/>
-                                <TextBox x:Name="tbDest" Text="{Binding Path=DestAdress}" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" Margin="2.2,5,0,0" Grid.Column="1" Grid.Row="1"/>
-                                <TextBox x:Name="tbSMTP" Text="{Binding Path=SMTP}" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" Margin="2.2,5,0,0" Grid.Column="1" Grid.Row="2"/>
-                                <Label Content="Port:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="156,0.8,0,0" Height="27" Width="37" Grid.Row="3" Grid.ColumnSpan="2"/>
-                                <TextBox x:Name="tbPort" Text="{Binding Path=Port}" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" Margin="2.2,5,0,0" Grid.Column="1" Grid.Row="3"/>
-                                <TextBox x:Name="tbMDP" Text="{Binding Path=PWDExp}" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" Margin="2.2,5,0,0" Grid.Column="1" Grid.Row="4"/>
-                                <Label Content="Mot de passe expediteur:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,3.4,0,0" Height="27" Width="152" Grid.Row="4" Grid.ColumnSpan="2"/>
-                                <CheckBox Name="cbSSL" IsChecked="{Binding Path=SSL}" Content="SSL" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="189.2,9,0,0" Grid.RowSpan="2" FlowDirection="RightToLeft"/>
-                            </Grid>
-                        </GroupBox>
+    <Grid Background="{StaticResource AppBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical">
+                <GroupBox Header="Sauvegarde" x:Name="GPSauvegarde" HorizontalAlignment="Left" VerticalAlignment="Top" Height="Auto" Width="Auto" FontFamily="Comic Sans MS">
+                    <Grid>
+                        <Button x:Name="btnParcourir" Content="Parcourir" HorizontalAlignment="Left" Margin="385,60,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.107,-0.538"/>
+                        <Label Content="Intervalle entre deux sauvegardes:" HorizontalAlignment="Left" Margin="49,4,0,0" VerticalAlignment="Top"/>
+                        <Label Content="jour(s)" HorizontalAlignment="Left" Margin="300,4,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Heure de la sauvegarde:" HorizontalAlignment="Left" Margin="113,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.51,0.426" Width="142"/>
+                        <TextBox x:Name="tbHeure" Text="{Binding Path=heure}" HorizontalAlignment="Left" Height="23" Margin="260,34,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="24"/>
+                        <Label Content=":" HorizontalAlignment="Left" Margin="284,32,0,0" VerticalAlignment="Top" Width="15" HorizontalContentAlignment="Center"/>
+                        <TextBox x:Name="tbMinute"  Text="{Binding Path=minute}" HorizontalAlignment="Left" Height="23" Margin="298,34,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="24"/>
+                        <Label x:Name="tbCibleSauvegarde" Content="Cible de la sauvegarde:" HorizontalAlignment="Left" Margin="117,58,0,0" VerticalAlignment="Top" Width="142"/>
+                        <TextBox Name="tbPath" HorizontalAlignment="Left" Height="23" Margin="260,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=path}"/>
+                        <Label Content="Nombre de sauvegarde à conserver:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,85,0,0"/>
+                        <ComboBox x:Name="cbKeepSave" SelectedValue="{Binding Path=nbSaves}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="39" Margin="260,88,0,0"/>
+                        <ComboBox x:Name="cbPeriod" SelectedValue="{Binding Path=period}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="39" Margin="260,6,0,0"/>
                     </Grid>
-                </TabItem>
-                <TabItem Header="Choix des fichiers">
-                    <Grid Background="White">
-                        <!--<TreeView Name="folderTreeView" ItemsSource="{Binding Path=TreeViewItemModelList}" SelectedItemChanged="folderTreeView_SelectedItemChanged"  HorizontalAlignment="Left" Height="397" Margin="10,10,0,0" VerticalAlignment="Top" Width="496">
-                            <TreeView.ItemTemplate>
-                                <HierarchicalDataTemplate DataType="{x:Type local:TreeViewItemModel}" ItemsSource="{Binding Path=Children}">
-                                    <TreeViewItem Foreground="#FF58AFFF"  IsExpanded="{Binding IsNotEmpty}" CheckBox.Click="TreeViewItem_Click">
-                                        <TreeViewItem.Header>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image  Source="image\dossier_windows_small.jpg"/>
-                                                <CheckBox Name="cbTreeViewItem" Focusable="False" IsChecked="{Binding Path=IsChecked}"/>
-                                                <ContentPresenter  Content="{Binding Name}" />
-                                            </StackPanel>
-                                        </TreeViewItem.Header>
-                                    </TreeViewItem>
-                                </HierarchicalDataTemplate>
-                            </TreeView.ItemTemplate>
-                        </TreeView>-->
-                        <TreeView>
-                        </TreeView>
-                    </Grid>    
-                </TabItem>
-            </TabControl>
-            <Button Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="364,468,0,0" VerticalAlignment="Top" Width="75" Click="btnOK_Click"/>
-            <Button Name="btnCancel"  Content="Annuler" HorizontalAlignment="Left" Margin="444,468,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.072,0.769" Click="btnCancel_Click"/>
-        </Grid>
-    </Border>
+                </GroupBox>
+                <GroupBox Header="Général" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="Auto" Width="{Binding ElementName=GPSauvegarde, Path=ActualWidth}">
+                    <CheckBox x:Name="cbAutoShutDown" Content="Eteindre le poste après sauvegarde" HorizontalAlignment="Left" Height="Auto"  VerticalAlignment="Top" Width="Auto" FlowDirection="RightToLeft"/>
+                </GroupBox>
+                <GroupBox Header="Mails" HorizontalAlignment="Left" VerticalAlignment="Top" Height="Auto" Width="{Binding ElementName=GPSauvegarde, Path=ActualWidth}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                    <Label Content="Expediteur:" HorizontalAlignment="Left" Margin="118,3,0,0" VerticalAlignment="Top" Height="27" Width="75"/>
+                    <Label Content="Destinataires:" HorizontalAlignment="Left" Margin="103,3.6,0,0" VerticalAlignment="Top" Height="27" Width="90" Grid.Row="1"/>
+                    <Label Content="Serveur SMTP:" HorizontalAlignment="Left" Margin="97,3.2,0,0" VerticalAlignment="Top" Height="27" Width="96" Grid.Row="2" />
+                    <Label Content="Port:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="156,0.8,0,0" Height="27" Width="37" Grid.Row="3"/>
+                    <Label Content="Mot de passe expediteur:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,3.4,0,0" Height="27" Width="152" Grid.Row="4"/>
+                    <TextBox x:Name="tbExp" Text="{Binding Path=ExpAdress}" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" Margin="2.2,5,0,0" Grid.Row="0" Grid.Column="1"/>
+                    <TextBox x:Name="tbDest" Text="{Binding Path=DestAdress}" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" Margin="2.2,5,0,0" Grid.Column="1" Grid.Row="1"/>
+                    <TextBox x:Name="tbSMTP" Text="{Binding Path=SMTP}" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" Margin="2.2,5,0,0" Grid.Column="1" Grid.Row="2"/>
+                    <TextBox x:Name="tbPort" Text="{Binding Path=Port}" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" Margin="2.2,5,0,0" Grid.Column="1" Grid.Row="3"/>
+                    <TextBox x:Name="tbMDP" Text="{Binding Path=PWDExp}" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" Margin="2.2,5,0,0" Grid.Column="1" Grid.Row="4"/>
+                    <CheckBox Name="cbSSL" IsChecked="{Binding Path=SSL}" Content="SSL" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Grid.Row="0"  FlowDirection="RightToLeft" Margin="10,0,0,0"/>
+                </Grid>
+            </GroupBox>
+            </StackPanel>    
+            <GroupBox Header="Choix des fichiers" HorizontalAlignment="Left" Width="Auto" Grid.Column="1" Grid.Row="0">
+                <TreeView Name="folderTreeView" ItemsSource="{Binding Path=TreeViewItemModelList}" SelectedItemChanged="folderTreeView_SelectedItemChanged"  HorizontalAlignment="Left" Height="397" Margin="10,10,0,0" VerticalAlignment="Top" Width="496">
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type local:TreeViewItemModel}" ItemsSource="{Binding Path=Children}">
+                            <TreeViewItem Foreground="#FF58AFFF"  IsExpanded="{Binding IsNotEmpty}" CheckBox.Click="TreeViewItem_Click">
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image  Source="image\dossier_windows_small.jpg"/>
+                                        <CheckBox Name="cbTreeViewItem" Focusable="False" IsChecked="{Binding Path=IsChecked}"/>
+                                        <ContentPresenter  Content="{Binding Name}" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </GroupBox>
+        </Grid >
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Height="Auto">
+            <Button Name="btnOK" Content="OK" Width="75" Click="btnOK_Click" />
+            <Button Name="btnCancel" Margin="10,0,0,0" Content="Annuler"   Width="75"  Click="btnCancel_Click"/>
+        </StackPanel>
+    </Grid>
 </Window>
