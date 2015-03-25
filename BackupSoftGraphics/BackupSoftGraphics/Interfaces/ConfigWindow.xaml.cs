@@ -34,7 +34,6 @@ namespace BackupSoftGraphics
         private const int MIN_VALUE = 0;
         private BindingList<BackupFolder> backupFoldersList;
         public event PropertyChangedEventHandler PropertyChanged;
-        private BindingList<TreeViewItemModel> treeViewItemModelList;
         public BindingList<BackupFolder> BackupFoldersList
         {
             get { return backupFoldersList; }
