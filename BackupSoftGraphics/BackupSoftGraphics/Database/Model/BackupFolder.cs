@@ -14,8 +14,9 @@ namespace BackupSoftGraphics.Database.Model
         public String Fullname { get; set; }
         public DateTime? LastSaveDate { get; set; }
         public int Size { get; set; }
+        public String Name { get { return Path.GetDirectoryName(Fullname); } }
 
-        public BackupFolder Children { get; set; }
+        public List<BackupFolder> Children { get; set; }
 
         public bool? IsChecked { get; set; }
 

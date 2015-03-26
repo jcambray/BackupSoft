@@ -82,9 +82,9 @@
                             <TreeViewItem Foreground="#FF58AFFF"  CheckBox.Click="TreeViewItem_Click">
                                 <TreeViewItem.Header>
                                     <StackPanel Orientation="Horizontal">
-                                        <Image  Source="/BackupSoftGraphics;component/images/dossier_windows_small.jpg"/>
+                                        <Image  Source="images/dossier_windows_small.jpg"/>
                                         <CheckBox Name="cbTreeViewItem" Focusable="False" IsChecked="{Binding Path=IsChecked}"/>
-                                        <ContentPresenter  Content="{Binding Name}" />
+                                        <TextBlock Text="{Binding Path=Name}" />
                                     </StackPanel>
                                 </TreeViewItem.Header>
                             </TreeViewItem>

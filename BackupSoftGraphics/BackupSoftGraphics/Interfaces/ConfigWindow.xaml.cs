@@ -40,7 +40,7 @@ namespace BackupSoftGraphics
             set
             {
                 backupFoldersList = value;
-                RaisePropertyChangedEvent("backupFoldersList");
+                RaisePropertyChangedEvent("BackupFoldersList");
             }
         }
 
@@ -110,15 +110,15 @@ namespace BackupSoftGraphics
         {
             try
             {
-                var item = e.NewValue as TreeViewItemModel;
-                new DirectoryInfo(item.Folder.FullName)
+                var item = e.NewValue as BackupFolder;
+                new DirectoryInfo(item.Fullname)
                     .GetDirectories()
                     .ToList()
                     .ForEach(I =>
                     {
-                        item.AddItem(new TreeViewItemModel(I.FullName,item));
+                        item.Children.Add( new BackupFolder{ Fullname = I.FullName});
                     });
-                RaisePropertyChangedEvent("TreeViewItemModelList");               
+                RaisePropertyChangedEvent("BackupFoldersList");               
             }
             catch (UnauthorizedAccessException) { }
         }
