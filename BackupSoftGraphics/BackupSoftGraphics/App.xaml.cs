@@ -57,7 +57,7 @@ namespace BackupSoftGraphics
             DBContext = new BackupSoftDBContext();
             //System.Diagnostics.Debug.WriteLine(DBContext.Database.Connection.ConnectionString);
             //var test = new BackupFolder { Fullname = @"C:\test", IsChecked = true };
-            DBContext.BackupFolders.Add(test);
+            //DBContext.BackupFolders.Add(test);
             DBContext.SaveChanges();
             Config = Sauvegarde.c;
             notifyIcon = new System.Windows.Forms.NotifyIcon();
