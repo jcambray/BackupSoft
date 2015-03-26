@@ -135,6 +135,7 @@
       <DependentUpon>SaveViewWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\TreeViewItemModel.cs" />
+    <Compile Include="Tools\ConnectionStringBuilder.cs" />
     <Page Include="Interfaces\ConfigWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -15,7 +15,7 @@ namespace BackupSoftGraphics.Database
      public  class BackupSoftDBContext : DbContext
     {
          public BackupSoftDBContext()
-             : base("BackupSoftDB_TEST")
+             : base("BackupSoftDB")
          {
              System.Data.Entity.Database.SetInitializer<BackupSoftDBContext>(new CreateDatabaseIfNotExists<BackupSoftDBContext>());
          }

@@ -53,8 +53,10 @@ namespace BackupSoftGraphics
 
         void App_Startup(object sender, StartupEventArgs e)
         {
+            SetConnectionString();
             DBContext = new BackupSoftDBContext();
-            var test = new BackupFolder { Fullname = @"C:\test", IsChecked = true };
+            //System.Diagnostics.Debug.WriteLine(DBContext.Database.Connection.ConnectionString);
+            //var test = new BackupFolder { Fullname = @"C:\test", IsChecked = true };
             DBContext.BackupFolders.Add(test);
             DBContext.SaveChanges();
             Config = Sauvegarde.c;
@@ -77,6 +79,19 @@ namespace BackupSoftGraphics
                 //initSaveViewer();
             }
             
+        }
+
+        private void SetConnectionString()
+        {
+            var DatabaseFileName = "BackupSoftDB.mdf";
+            var connectionString = Tools.ConnectionStringBuilder.GetRelativeConnectionString("(LocalDB)\\v11.0"
+                , "\"" + System.AppDomain.CurrentDomain.BaseDirectory + DatabaseFileName + "\""
+                , "True", "30");
+
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.ConnectionStrings.ConnectionStrings["BackupSoftDB"].ConnectionString = connectionString;
+            config.Save(ConfigurationSaveMode.Modified, true);
+            ConfigurationManager.RefreshSection("connectionStrings");
         }
 
         private void Configuretimer()
