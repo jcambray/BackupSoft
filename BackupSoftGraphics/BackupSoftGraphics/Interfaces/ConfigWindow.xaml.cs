@@ -64,7 +64,7 @@ namespace BackupSoftGraphics
             //    .GetDirectories()
             //    .ToList()
             //    .ForEach(I => TreeViewItemModelList.Add(new TreeViewItemModel(I.FullName,null)));
-            DataContext = this;
+            //DataContext = this;
         }
 
         private BindingList<BackupFolder> GetBackupFilesFromDBB()

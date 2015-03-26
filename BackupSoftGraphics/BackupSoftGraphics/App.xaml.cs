@@ -53,7 +53,8 @@ namespace BackupSoftGraphics
 
         void App_Startup(object sender, StartupEventArgs e)
         {
-            DBContext = new BackupSoftDBContext();  
+            DBContext = new BackupSoftDBContext();
+            DBContext.BackupFolders.Add(new BackupFolder());
             Config = Sauvegarde.c;
             notifyIcon = new System.Windows.Forms.NotifyIcon();
             ConfigureNotifyIcon();
