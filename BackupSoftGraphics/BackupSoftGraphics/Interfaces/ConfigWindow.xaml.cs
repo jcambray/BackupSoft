@@ -34,6 +34,8 @@ namespace BackupSoftGraphics
         private const int MIN_VALUE = 0;
         private BindingList<BackupFolder> backupFoldersList;
         public event PropertyChangedEventHandler PropertyChanged;
+        private String userSessionFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile,Environment.SpecialFolderOption.DoNotVerify);
+
         public BindingList<BackupFolder> BackupFoldersList
         {
             get { return backupFoldersList; }
@@ -59,7 +61,7 @@ namespace BackupSoftGraphics
 
           
             backupFoldersList = GetBackupFilesFromDBB();
-
+            
             //new DirectoryInfo(System.IO.Path.Combine(Application.Config.SearchRoot, Environment.UserName))
             //    .GetDirectories()
             //    .ToList()
@@ -71,7 +73,10 @@ namespace BackupSoftGraphics
         {
             try
             {
-               return  new BindingList<BackupFolder>(Application.DBContext.BackupFolders.ToList());
+                
+               var list = Application.DBContext.BackupFolders.ToList();
+               list.ForEach(B => B.IsChecked = true);
+               return  new BindingList<BackupFolder>(list);
             }
             catch(Exception e)
             {
@@ -172,5 +177,11 @@ namespace BackupSoftGraphics
             
         }
 
+
+        private List<BackupFolder> RetrieveDirectories(String searchRoot,List<BackupFolder> list)
+        {
+
+            return list;
+        }
     }
 }
