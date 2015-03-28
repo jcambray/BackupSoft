@@ -34,7 +34,6 @@ namespace BackupSoftGraphics
         private const int MIN_VALUE = 0;
         private BindingList<BackupFolder> backupFoldersList;
         public event PropertyChangedEventHandler PropertyChanged;
-        private String userSessionFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile,Environment.SpecialFolderOption.DoNotVerify);
 
         public BindingList<BackupFolder> BackupFoldersList
         {
@@ -60,13 +59,19 @@ namespace BackupSoftGraphics
             cbKeepSave.SelectedIndex = 0;
 
           
-            backupFoldersList = GetBackupFilesFromDBB();
-            
+            //backupFoldersList = GetBackupFilesFromDBB();
+            BackupFoldersList = new BindingList<BackupFolder>();
+            var foldertreeViewContentList = new List<BackupFolder>();
+            FillFolderTreeviewContentList((new BackupFolder { Fullname = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile, Environment.SpecialFolderOption.DoNotVerify) })
+            , foldertreeViewContentList
+            , backupFoldersList.ToList());
+
+            backupFoldersList = new BindingList<BackupFolder>(foldertreeViewContentList);
             //new DirectoryInfo(System.IO.Path.Combine(Application.Config.SearchRoot, Environment.UserName))
             //    .GetDirectories()
             //    .ToList()
             //    .ForEach(I => TreeViewItemModelList.Add(new TreeViewItemModel(I.FullName,null)));
-            //DataContext = this;
+            DataContext = this;
         }
 
         private BindingList<BackupFolder> GetBackupFilesFromDBB()
@@ -134,22 +139,15 @@ namespace BackupSoftGraphics
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void TreeViewItem_Click(object sender, RoutedEventArgs e)
-        {
-            var model = ((TreeViewItem)sender).DataContext as TreeViewItemModel;
-            model.Children.ToList().ForEach(I => I.IsChecked = model.IsChecked);
-            if (model.Parent != null)
-                model.UpdateParentIsChecked();
-        }
-
+      
 
         private List<String> GetCheckedNodes()
         {
             //var checkedNodes = new List<String>();
-          
+
             //foreach (TreeViewItemModel model in folderTreeView.ItemsSource)
             //{
-            //    ProcessNode(model,checkedNodes);
+            //    ProcessNode(model, checkedNodes);
             //}
             //return checkedNodes;
             return null;
@@ -178,10 +176,31 @@ namespace BackupSoftGraphics
         }
 
 
-        private List<BackupFolder> RetrieveDirectories(String searchRoot,List<BackupFolder> list)
+        private void RetrieveDirectories(BackupFolder root, List<BackupFolder> backupFoldersloadedFromDatabase)
         {
+            try
+            {
+                var tempList = new DirectoryInfo(root.Fullname).GetDirectories();
+                foreach(DirectoryInfo d in tempList)
+                {
+                   BackupFolder b;
+                   if (backupFoldersloadedFromDatabase.Select(X => X.Fullname).Contains(d.FullName))
+                       b = new BackupFolder { Fullname = d.FullName, IsChecked = true };
+                   else
+                       b = new BackupFolder { Fullname = d.FullName, IsChecked = false };
+                   root.Children.Add(b);
+                   RetrieveDirectories(b, backupFoldersloadedFromDatabase);
+                }
+                
+            }
+            catch (Exception) { }
+        }
 
-            return list;
+        private List<BackupFolder> FillFolderTreeviewContentList(BackupFolder root,List<BackupFolder>listToFill, List<BackupFolder> backupFoldersloadedFromDatabase)
+        {
+            RetrieveDirectories(root, backupFoldersloadedFromDatabase);
+            listToFill.Add(root);
+            return listToFill;
         }
     }
 }

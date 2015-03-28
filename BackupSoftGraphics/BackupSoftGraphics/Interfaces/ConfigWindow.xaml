@@ -79,7 +79,7 @@
                 <TreeView Name="folderTreeView" ItemsSource="{Binding Path=BackupFoldersList}" SelectedItemChanged="folderTreeView_SelectedItemChanged"  HorizontalAlignment="Left" Height="397"  VerticalAlignment="Top" Width="496">
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate DataType="{x:Type localModel:BackupFolder}" ItemsSource="{Binding Path=Children}">
-                            <TreeViewItem Foreground="#FF58AFFF"  CheckBox.Click="TreeViewItem_Click">
+                            <TreeViewItem Foreground="#FF58AFFF">
                                 <TreeViewItem.Header>
                                     <StackPanel Orientation="Horizontal">
                                         <Image  Source="images/dossier_windows_small.jpg"/>

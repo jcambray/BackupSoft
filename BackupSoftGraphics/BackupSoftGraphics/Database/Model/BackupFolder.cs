@@ -14,13 +14,18 @@ namespace BackupSoftGraphics.Database.Model
         public String Fullname { get; set; }
         public DateTime? LastSaveDate { get; set; }
         public int Size { get; set; }
-        public String Name { get { return Path.GetDirectoryName(Fullname); } }
+        public String Name { get { return Path.GetFileName(Fullname); } }
 
         public List<BackupFolder> Children { get; set; }
 
         public bool? IsChecked { get; set; }
 
-        public List<BackupFile> FilesList { get; set; }  
+        public List<BackupFile> FilesList { get; set; }
+
+        public BackupFolder()
+        {
+            Children = new List<BackupFolder>();
+        }
         
     }
 }
