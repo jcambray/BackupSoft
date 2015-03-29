@@ -17,7 +17,7 @@ namespace BackupSoftGraphics.Database
          public BackupSoftDBContext()
              : base("BackupSoftDB")
          {
-             System.Data.Entity.Database.SetInitializer<BackupSoftDBContext>(new CreateDatabaseIfNotExists<BackupSoftDBContext>());
+             System.Data.Entity.Database.SetInitializer<BackupSoftDBContext>(new DropCreateDatabaseIfModelChanges<BackupSoftDBContext>());
          }
 
          public DbSet<BackupFolder> BackupFolders { get; set; }

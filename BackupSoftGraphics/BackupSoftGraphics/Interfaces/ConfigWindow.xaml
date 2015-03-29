@@ -24,7 +24,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="508px"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical">
                 <GroupBox Header="Sauvegarde" x:Name="GPSauvegarde" HorizontalAlignment="Left" VerticalAlignment="Top" Height="Auto" Width="Auto" FontFamily="Comic Sans MS">
@@ -76,14 +76,24 @@
             </GroupBox>
             </StackPanel>    
             <GroupBox Header="Choix des fichiers" HorizontalAlignment="Left" Width="Auto" Grid.Column="1" Grid.Row="0">
-                <TreeView Name="folderTreeView" ItemsSource="{Binding Path=BackupFoldersList}" SelectedItemChanged="folderTreeView_SelectedItemChanged"  HorizontalAlignment="Left" Height="397"  VerticalAlignment="Top" Width="496">
+                <TreeView Name="folderTreeView" ItemsSource="{Binding Path=BackupFoldersList}" SelectedItemChanged="folderTreeView_SelectedItemChanged"  HorizontalAlignment="Left" Height="397"  VerticalAlignment="Top" Width="400">
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate DataType="{x:Type localModel:BackupFolder}" ItemsSource="{Binding Path=Children}">
                             <TreeViewItem Foreground="#FF58AFFF">
                                 <TreeViewItem.Header>
                                     <StackPanel Orientation="Horizontal">
                                         <Image  Source="images/dossier_windows_small.jpg"/>
-                                        <CheckBox Name="cbTreeViewItem" Focusable="False" IsChecked="{Binding Path=IsChecked}"/>
+                                        <CheckBox Name="cbTreeViewItem" Focusable="False">
+                                            <CheckBox.Style>
+                                                <Style TargetType="CheckBox">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding AllChildrenChecked}" Value="true">
+                                                         <Setter   Property="IsChecked" Value="true"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </CheckBox.Style>
+                                        </CheckBox>
                                         <TextBlock Text="{Binding Path=Name}" />
                                     </StackPanel>
                                 </TreeViewItem.Header>
