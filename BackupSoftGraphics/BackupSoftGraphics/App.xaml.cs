@@ -53,13 +53,18 @@ namespace BackupSoftGraphics
 
         void App_Startup(object sender, StartupEventArgs e)
         {
-            if (!File.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "BackupSoftDB.mdf"))
-             SetConnectionString();
-            DBContext = new BackupSoftDBContext();
+            //if (!File.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "BackupSoftDB.mdf"))
+            // SetConnectionString();
+            //DBContext = new BackupSoftDBContext();
             //System.Diagnostics.Debug.WriteLine(DBContext.Database.Connection.ConnectionString);
             //var test = new BackupFolder { Fullname = @"C:\test", IsChecked = true };
             //DBContext.BackupFolders.Add(test);
             //DBContext.SaveChanges();
+            DBContext = new BackupSoftDBContext();
+            DBContext.Database.CreateIfNotExists();
+            var test = new BackupFolder { Fullname = @"C:\test", IsChecked = true };
+            DBContext.BackupFolders.Add(test);
+
             Config = Sauvegarde.c;
             notifyIcon = new System.Windows.Forms.NotifyIcon();
             ConfigureNotifyIcon();
@@ -82,18 +87,18 @@ namespace BackupSoftGraphics
             
         }
 
-        private void SetConnectionString()
-        {
-            var DatabaseFileName = "BackupSoftDB.mdf";
-            var connectionString = Tools.ConnectionStringBuilder.GetRelativeConnectionString("(LocalDB)\\v11.0"
-                , "\"" + System.AppDomain.CurrentDomain.BaseDirectory + DatabaseFileName + "\""
-                , "True", "30");
+        //private void SetConnectionString()
+        //{
+        //    var DatabaseFileName = "BackupSoftDB.mdf";
+        //    var connectionString = Tools.ConnectionStringBuilder.GetRelativeConnectionString("(LocalDB)\\v11.0"
+        //        , "\"" + System.AppDomain.CurrentDomain.BaseDirectory + DatabaseFileName + "\""
+        //        , "True", "30");
 
-            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.ConnectionStrings.ConnectionStrings["BackupSoftDB"].ConnectionString = connectionString;
-            config.Save(ConfigurationSaveMode.Modified, true);
-            ConfigurationManager.RefreshSection("connectionStrings");
-        }
+        //    var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        //    config.ConnectionStrings.ConnectionStrings["BackupSoftDB"].ConnectionString = connectionString;
+        //    config.Save(ConfigurationSaveMode.Modified, true);
+        //    ConfigurationManager.RefreshSection("connectionStrings");
+        //}
 
         private void Configuretimer()
         {

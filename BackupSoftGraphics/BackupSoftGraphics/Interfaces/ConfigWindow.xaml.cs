@@ -48,6 +48,7 @@ namespace BackupSoftGraphics
         public ConfigWindow(App app)
         {
             InitializeComponent();
+            
             Application = app;
             for(int i = 0; i <= 30;i++)
                 cbPeriod.Items.Add(i);
@@ -60,17 +61,6 @@ namespace BackupSoftGraphics
 
           
             //backupFoldersList = GetBackupFilesFromDBB();
-            BackupFoldersList = new BindingList<BackupFolder>();
-            var foldertreeViewContentList = new List<BackupFolder>();
-            FillFolderTreeviewContentList((new BackupFolder { Fullname = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile, Environment.SpecialFolderOption.DoNotVerify) })
-            , foldertreeViewContentList
-            , backupFoldersList.ToList());
-
-            backupFoldersList = new BindingList<BackupFolder>(foldertreeViewContentList);
-            //new DirectoryInfo(System.IO.Path.Combine(Application.Config.SearchRoot, Environment.UserName))
-            //    .GetDirectories()
-            //    .ToList()
-            //    .ForEach(I => TreeViewItemModelList.Add(new TreeViewItemModel(I.FullName,null)));
             DataContext = this;
         }
 
@@ -114,24 +104,7 @@ namespace BackupSoftGraphics
             Close();
         }
 
-      
-
-        private void folderTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            try
-            {
-                var item = e.NewValue as BackupFolder;
-                new DirectoryInfo(item.Fullname)
-                    .GetDirectories()
-                    .ToList()
-                    .ForEach(I =>
-                    {
-                        item.Children.Add( new BackupFolder{ Fullname = I.FullName});
-                    });
-                RaisePropertyChangedEvent("BackupFoldersList");               
-            }
-            catch (UnauthorizedAccessException) { }
-        }
+     
 
         private void RaisePropertyChangedEvent( string propertyName)
         {
@@ -176,7 +149,7 @@ namespace BackupSoftGraphics
         }
 
 
-        private void RetrieveDirectories(BackupFolder root, List<BackupFolder> backupFoldersloadedFromDatabase)
+        private  async Task RetrieveDirectoriesAsync(BackupFolder root, List<BackupFolder> backupFoldersloadedFromDatabase)
         {
             try
             {
@@ -189,18 +162,34 @@ namespace BackupSoftGraphics
                    else
                        b = new BackupFolder { Fullname = d.FullName, IsChecked = false };
                    root.Children.Add(b);
-                   RetrieveDirectories(b, backupFoldersloadedFromDatabase);
+                   await RetrieveDirectoriesAsync(b, backupFoldersloadedFromDatabase);
                 }
                 
             }
             catch (Exception) { }
         }
 
-        private List<BackupFolder> FillFolderTreeviewContentList(BackupFolder root,List<BackupFolder>listToFill, List<BackupFolder> backupFoldersloadedFromDatabase)
+        private async  Task<List<BackupFolder>> FillFolderTreeviewContentListAsync(BackupFolder root, List<BackupFolder> backupFoldersloadedFromDatabase)
         {
-            RetrieveDirectories(root, backupFoldersloadedFromDatabase);
-            listToFill.Add(root);
-            return listToFill;
+            await RetrieveDirectoriesAsync(root, backupFoldersloadedFromDatabase);
+            return root.Children;
+        }
+
+        private void cbTreeViewItem_Click(object sender, RoutedEventArgs e)
+        {
+            var control = sender as CheckBox;
+            var model = control.DataContext as BackupFolder;
+            model.AllChildrenChecked = true;
+        }
+
+      
+
+        private async void Window_ContentRendered(object sender, EventArgs e)
+        {
+            BackupFoldersList = new BindingList<BackupFolder>();
+            var task = FillFolderTreeviewContentListAsync((new BackupFolder { Fullname = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile, Environment.SpecialFolderOption.DoNotVerify) })
+            , backupFoldersList.ToList());
+            backupFoldersList = new BindingList<BackupFolder>(await task);
         }
     }
 }

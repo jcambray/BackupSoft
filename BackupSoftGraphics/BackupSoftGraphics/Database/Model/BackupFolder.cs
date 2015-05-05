@@ -13,30 +13,27 @@ namespace BackupSoftGraphics.Database.Model
    public  class BackupFolder : INotifyPropertyChanged
     {
         public int Id { get; set; }
+
+
         public String Fullname { get; set; }
+
         public DateTime? LastSaveDate { get; set; }
+
         public int Size { get; set; }
+
+       [NotMapped]
         public String Name { get { return Path.GetFileName(Fullname); } }
 
         public List<BackupFolder> Children { get; set; }
 
-        [NotMapped]
+
         public bool? IsChecked { get; set; }
 
-       [NotMapped]
-       public bool? AllChildrenChecked
-        {
-            get
-            {
-                if (Children.All(C => (bool)C.IsChecked))
-                    return true;
-                if (!Children.All(C => (bool)C.IsChecked))
-                    return false;
-                else
-                    return null;
-            }
-        }
 
+       [NotMapped]
+       public bool? AllChildrenChecked { get; set; }
+
+        
         public List<BackupFile> FilesList { get; set; }
 
         public BackupFolder()
@@ -50,7 +47,7 @@ namespace BackupSoftGraphics.Database.Model
        private void RaiseEvent(string propertyName)
         {
            if(PropertyChanged != null)
-               PropertyChanged(this,new PropertyChangedEventArgs(propertyName);
+               PropertyChanged(this,new PropertyChangedEventArgs(propertyName));
         }
     }
 }

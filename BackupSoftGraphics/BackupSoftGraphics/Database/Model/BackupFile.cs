@@ -9,7 +9,10 @@ namespace BackupSoftGraphics.Database.Model
     public class BackupFile
     {
         public int Id { get; set; }
+
+
         public String Fullname { get; set; }
+
         public DateTime? LastSaveDate { get; set; }
         public long Size { get; set; }
     }
