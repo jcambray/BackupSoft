@@ -26,23 +26,23 @@ namespace BackupSoftGraphics
     /// <summary>
     /// Logique d'interaction pour ConfigWindow.xaml
     /// </summary>
-    public partial class ConfigWindow : Window , INotifyPropertyChanged
+    public partial class ConfigWindow : Window
     {
         public  App Application {get;set;}
         private const int MAX_HOUR = 23;
         private const int MAX_MINUTE = 59;
         private const int MIN_VALUE = 0;
-        private BindingList<BackupFolder> backupFoldersList;
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public BindingList<BackupFolder> BackupFoldersList
+        public TreeviewViewModel TreeviewViewModel
         {
-            get { return backupFoldersList; }
-            set
+            get
             {
-                backupFoldersList = value;
-                RaisePropertyChangedEvent("BackupFoldersList");
+                return new TreeviewViewModel();
             }
+        }
+
+        public ConfigWindow()
+        {
+
         }
 
         public ConfigWindow(App app)
@@ -58,27 +58,9 @@ namespace BackupSoftGraphics
             for (int i = 0; i <= 3; i++)
                 cbKeepSave.Items.Add(i);
             cbKeepSave.SelectedIndex = 0;
-
-          
-            //backupFoldersList = GetBackupFilesFromDBB();
             DataContext = this;
         }
 
-        private BindingList<BackupFolder> GetBackupFilesFromDBB()
-        {
-            try
-            {
-                
-               var list = Application.DBContext.BackupFolders.ToList();
-               list.ForEach(B => B.IsChecked = true);
-               return  new BindingList<BackupFolder>(list);
-            }
-            catch(Exception e)
-            {
-                Log.Write("Une erreur est survenur lors d'une tentative d'interrogation de la base de données: " + Environment.NewLine + e.Message);
-                return new BindingList<BackupFolder>();
-            }
-        }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -88,7 +70,7 @@ namespace BackupSoftGraphics
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             Application.Config.SaveConfiguration();
-            //Serialization.serializeToXML(GetCheckedNodes(), "folders.xml");
+            Serialization.serializeToXML(GetCheckedNodes(), "folders.xml");
             SaveCheckedNodes(GetCheckedNodes());
             Close();
         }
@@ -96,7 +78,6 @@ namespace BackupSoftGraphics
         private void SaveCheckedNodes(List<string> list)
         {
             var backupFolders = list.Select(S => new BackupFolder {  Fullname = S}).ToList();
-            Application.DBContext.BackupFolders.AddRange(backupFolders);
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -104,92 +85,61 @@ namespace BackupSoftGraphics
             Close();
         }
 
-     
-
-        private void RaisePropertyChangedEvent( string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
 
       
 
         private List<String> GetCheckedNodes()
         {
-            //var checkedNodes = new List<String>();
+            var checkedNodes = new List<String>();
 
-            //foreach (TreeViewItemModel model in folderTreeView.ItemsSource)
-            //{
-            //    ProcessNode(model, checkedNodes);
-            //}
-            //return checkedNodes;
-            return null;
+            foreach (BackupFolder model in folderTreeView.ItemsSource)
+            {
+                ProcessNode(model, checkedNodes);
+            }
+            return checkedNodes;
         }
      
-        private void ProcessNode(TreeViewItemModel item,List<string> list)
+        private void ProcessNode(BackupFolder item,List<string> list)
         {
             foreach (var i in item.Children)
             {
                 if (i.IsChecked == null)
                 {
                     //if (!folders.Contains(i.Folder.FullName))
-                    //    list.Add(i.Folder.FullName);
-                    //ProcessNode(i,list);
+                    list.Add(i.Fullname);
+                    ProcessNode(i, list);
                     continue;
                 }
                 
-                if ((bool)i.IsChecked)
+                if ((bool)i.IsChecked == true)
                 {
                     //if (!folders.Contains(i.Folder.FullName))
-                    //    list.Add(i.Folder.FullName);
-                    //ProcessNode(i,list);
+                     list.Add(i.Fullname);
+                    ProcessNode(i, list);
                 }
             }
             
         }
 
 
-        private  async Task RetrieveDirectoriesAsync(BackupFolder root, List<BackupFolder> backupFoldersloadedFromDatabase)
-        {
-            try
-            {
-                var tempList = new DirectoryInfo(root.Fullname).GetDirectories();
-                foreach(DirectoryInfo d in tempList)
-                {
-                   BackupFolder b;
-                   if (backupFoldersloadedFromDatabase.Select(X => X.Fullname).Contains(d.FullName))
-                       b = new BackupFolder { Fullname = d.FullName, IsChecked = true };
-                   else
-                       b = new BackupFolder { Fullname = d.FullName, IsChecked = false };
-                   root.Children.Add(b);
-                   await RetrieveDirectoriesAsync(b, backupFoldersloadedFromDatabase);
-                }
-                
-            }
-            catch (Exception) { }
-        }
-
-        private async  Task<List<BackupFolder>> FillFolderTreeviewContentListAsync(BackupFolder root, List<BackupFolder> backupFoldersloadedFromDatabase)
-        {
-            await RetrieveDirectoriesAsync(root, backupFoldersloadedFromDatabase);
-            return root.Children;
-        }
-
         private void cbTreeViewItem_Click(object sender, RoutedEventArgs e)
         {
             var control = sender as CheckBox;
             var model = control.DataContext as BackupFolder;
-            model.AllChildrenChecked = true;
+            if (model.IsChecked == true)
+                UpdateChildren(model, true);
+            if (model.IsChecked == false)
+                UpdateChildren(model, false);
         }
 
-      
-
-        private async void Window_ContentRendered(object sender, EventArgs e)
+        void UpdateChildren(BackupFolder folder, bool? newValue)
         {
-            BackupFoldersList = new BindingList<BackupFolder>();
-            var task = FillFolderTreeviewContentListAsync((new BackupFolder { Fullname = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile, Environment.SpecialFolderOption.DoNotVerify) })
-            , backupFoldersList.ToList());
-            backupFoldersList = new BindingList<BackupFolder>(await task);
+            foreach (var c in folder.Children)
+            {
+                c.IsChecked = newValue;
+                UpdateChildren(c, newValue);
+            }
         }
+
     }
 }

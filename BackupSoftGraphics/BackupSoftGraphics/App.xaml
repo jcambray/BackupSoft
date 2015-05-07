@@ -2,9 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:localProp="clr-namespace:BackupSoftGraphics.Properties"
+             xmlns:src="clr-namespace:BackupSoftGraphics"
              StartupUri="Interfaces\MainWindow.xaml"
              SessionEnding="Application_SessionEnding">
     <Application.Resources>
+        <ObjectDataProvider x:Key="config"
+                            ObjectType="{x:Type localProp:Settings}"/>
         <LinearGradientBrush x:Key="AppBackground" StartPoint="1.5,0" EndPoint="1.5,1">
             <GradientStop Color="White" Offset="0" />
             <GradientStop Color="#FF58AFFF" Offset="1" />

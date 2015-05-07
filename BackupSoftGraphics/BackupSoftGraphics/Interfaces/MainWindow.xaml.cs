@@ -18,6 +18,7 @@ using System.Threading;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Windows.Interop;
+using BackupSoftGraphics.Database.Model;
 #endregion
 
 namespace BackupSoftGraphics
@@ -45,6 +46,7 @@ namespace BackupSoftGraphics
             {
                 lbDateProchaineSauvegarde1.Content = String.Format("Date de la prochaine sauvegarde: {0}",application.Sauvegarde.nextSave.ToShortDateString());
             }
+            
         }
 
         void btnSave_Click(object sender, RoutedEventArgs e)

@@ -17,6 +17,7 @@ using Configuration = clientbackup.Configuration;
 using BackupSoftGraphics.Database;
 using BackupSoftGraphics.Database.Model;
 
+
 namespace BackupSoftGraphics
 {
     /// <summary>
@@ -43,7 +44,6 @@ namespace BackupSoftGraphics
         }
         DispatcherTimer timer;
         System.Windows.Forms.NotifyIcon notifyIcon;
-        public BackupSoftDBContext DBContext { get; set; }
 
         public App()
         {
@@ -60,10 +60,7 @@ namespace BackupSoftGraphics
             //var test = new BackupFolder { Fullname = @"C:\test", IsChecked = true };
             //DBContext.BackupFolders.Add(test);
             //DBContext.SaveChanges();
-            DBContext = new BackupSoftDBContext();
-            DBContext.Database.CreateIfNotExists();
-            var test = new BackupFolder { Fullname = @"C:\test", IsChecked = true };
-            DBContext.BackupFolders.Add(test);
+            //DBContext.Database.CreateIfNotExists();
 
             Config = Sauvegarde.c;
             notifyIcon = new System.Windows.Forms.NotifyIcon();

@@ -21,17 +21,39 @@ namespace BackupSoftGraphics.Database.Model
 
         public int Size { get; set; }
 
-       [NotMapped]
         public String Name { get { return Path.GetFileName(Fullname); } }
 
         public List<BackupFolder> Children { get; set; }
 
 
-        public bool? IsChecked { get; set; }
+        private bool? isChecked;
+        public bool? IsChecked
+        {
+            get
+            {
+                return isChecked;
+            }
+            set
+            {
+                isChecked = value;
+                RaiseEvent("IsChecked");
+            }
+        }
 
+        private bool? allChildrenChecked;
+        public bool? AllChildrenChecked
+        {
+            get
+            {
+                return allChildrenChecked;
+            }
 
-       [NotMapped]
-       public bool? AllChildrenChecked { get; set; }
+            set
+            {
+                allChildrenChecked = value;
+                    RaiseEvent("AllChildrenChecked");
+            }
+        }
 
         
         public List<BackupFile> FilesList { get; set; }
