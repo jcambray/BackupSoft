@@ -36,7 +36,8 @@
                     <Label Content=":" HorizontalAlignment="Left" Margin="284,32,0,0" VerticalAlignment="Top" Width="15" HorizontalContentAlignment="Center"/>
                     <TextBox x:Name="tbMinute"  Text="{Binding Path=minute}" HorizontalAlignment="Left" Height="23" Margin="298,34,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="24"/>
                     <Label x:Name="tbCibleSauvegarde" Content="Cible de la sauvegarde:" HorizontalAlignment="Left" Margin="117,58,0,0" VerticalAlignment="Top" Width="142"/>
-                    <TextBox Name="tbPath" HorizontalAlignment="Left" Height="23" Margin="260,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Source={x:Static y:Settings.Default}, Path=path, Mode=Default}"/>
+                    <TextBox Name="tbPath" HorizontalAlignment="Left" Height="23" Margin="260,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
+                             Text="{Binding Path=path, Mode=TwoWay}"/>
                     <Label Content="Nombre de sauvegarde à conserver:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,85,0,0"/>
                     <ComboBox x:Name="cbKeepSave" SelectedValue="{Binding Path=nbSaves}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="39" Margin="260,88,0,0"/>
                     <ComboBox x:Name="cbPeriod" SelectedValue="{Binding Path=period}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="39" Margin="260,6,0,0"/>
