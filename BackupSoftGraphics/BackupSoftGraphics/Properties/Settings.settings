@@ -1,7 +1,183 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BackupSoftGraphics.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="racineRecherche" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\Users</Value>
+    </Setting>
+    <Setting Name="autoShutDown" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="heure" Type="System.String" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="minute" Type="System.String" Scope="User">
+      <Value Profile="(Default)">00</Value>
+    </Setting>
+    <Setting Name="path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\dev\testBackup</Value>
+    </Setting>
+    <Setting Name="period" Type="System.String" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="nbSavesSource" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;1&lt;/string&gt;
+  &lt;string&gt;2&lt;/string&gt;
+  &lt;string&gt;3&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="from" Type="System.String" Scope="User">
+      <Value Profile="(Default)">system@automotor-france.com</Value>
+    </Setting>
+    <Setting Name="MDPfrom" Type="System.String" Scope="User">
+      <Value Profile="(Default)">92150sur</Value>
+    </Setting>
+    <Setting Name="SMTP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">smtp.auth.orange-business.com</Value>
+    </Setting>
+    <Setting Name="port" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">587</Value>
+    </Setting>
+    <Setting Name="to" Type="System.String" Scope="User">
+      <Value Profile="(Default)">jcambray@automotor-france.com</Value>
+    </Setting>
+    <Setting Name="SSL" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="nbSaves" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="periodSource" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;1&lt;/string&gt;
+  &lt;string&gt;2&lt;/string&gt;
+  &lt;string&gt;3&lt;/string&gt;
+  &lt;string&gt;4&lt;/string&gt;
+  &lt;string&gt;5&lt;/string&gt;
+  &lt;string&gt;6&lt;/string&gt;
+  &lt;string&gt;7&lt;/string&gt;
+  &lt;string&gt;8&lt;/string&gt;
+  &lt;string&gt;9&lt;/string&gt;
+  &lt;string&gt;10&lt;/string&gt;
+  &lt;string&gt;11&lt;/string&gt;
+  &lt;string&gt;12&lt;/string&gt;
+  &lt;string&gt;13&lt;/string&gt;
+  &lt;string&gt;14&lt;/string&gt;
+  &lt;string&gt;15&lt;/string&gt;
+  &lt;string&gt;16&lt;/string&gt;
+  &lt;string&gt;17&lt;/string&gt;
+  &lt;string&gt;18&lt;/string&gt;
+  &lt;string&gt;19&lt;/string&gt;
+  &lt;string&gt;20&lt;/string&gt;
+  &lt;string&gt;21&lt;/string&gt;
+  &lt;string&gt;22&lt;/string&gt;
+  &lt;string&gt;23&lt;/string&gt;
+  &lt;string&gt;24&lt;/string&gt;
+  &lt;string&gt;25&lt;/string&gt;
+  &lt;string&gt;26&lt;/string&gt;
+  &lt;string&gt;27&lt;/string&gt;
+  &lt;string&gt;28&lt;/string&gt;
+  &lt;string&gt;29&lt;/string&gt;
+  &lt;string&gt;30&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="heureSource" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;00&lt;/string&gt;
+  &lt;string&gt;01&lt;/string&gt;
+  &lt;string&gt;02&lt;/string&gt;
+  &lt;string&gt;03&lt;/string&gt;
+  &lt;string&gt;04&lt;/string&gt;
+  &lt;string&gt;05&lt;/string&gt;
+  &lt;string&gt;06&lt;/string&gt;
+  &lt;string&gt;07&lt;/string&gt;
+  &lt;string&gt;08&lt;/string&gt;
+  &lt;string&gt;09&lt;/string&gt;
+  &lt;string&gt;10&lt;/string&gt;
+  &lt;string&gt;11&lt;/string&gt;
+  &lt;string&gt;12&lt;/string&gt;
+  &lt;string&gt;13&lt;/string&gt;
+  &lt;string&gt;14&lt;/string&gt;
+  &lt;string&gt;15&lt;/string&gt;
+  &lt;string&gt;16&lt;/string&gt;
+  &lt;string&gt;17&lt;/string&gt;
+  &lt;string&gt;18&lt;/string&gt;
+  &lt;string&gt;19&lt;/string&gt;
+  &lt;string&gt;20&lt;/string&gt;
+  &lt;string&gt;21&lt;/string&gt;
+  &lt;string&gt;22&lt;/string&gt;
+  &lt;string&gt;23&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="minuteSource" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;00&lt;/string&gt;
+  &lt;string&gt;01&lt;/string&gt;
+  &lt;string&gt;02&lt;/string&gt;
+  &lt;string&gt;03&lt;/string&gt;
+  &lt;string&gt;04&lt;/string&gt;
+  &lt;string&gt;05&lt;/string&gt;
+  &lt;string&gt;06&lt;/string&gt;
+  &lt;string&gt;07&lt;/string&gt;
+  &lt;string&gt;08&lt;/string&gt;
+  &lt;string&gt;09&lt;/string&gt;
+  &lt;string&gt;10&lt;/string&gt;
+  &lt;string&gt;11&lt;/string&gt;
+  &lt;string&gt;12&lt;/string&gt;
+  &lt;string&gt;13&lt;/string&gt;
+  &lt;string&gt;14&lt;/string&gt;
+  &lt;string&gt;15&lt;/string&gt;
+  &lt;string&gt;16&lt;/string&gt;
+  &lt;string&gt;17&lt;/string&gt;
+  &lt;string&gt;18&lt;/string&gt;
+  &lt;string&gt;19&lt;/string&gt;
+  &lt;string&gt;20&lt;/string&gt;
+  &lt;string&gt;21&lt;/string&gt;
+  &lt;string&gt;22&lt;/string&gt;
+  &lt;string&gt;23&lt;/string&gt;
+  &lt;string&gt;24&lt;/string&gt;
+  &lt;string&gt;25&lt;/string&gt;
+  &lt;string&gt;26&lt;/string&gt;
+  &lt;string&gt;27&lt;/string&gt;
+  &lt;string&gt;28&lt;/string&gt;
+  &lt;string&gt;29&lt;/string&gt;
+  &lt;string&gt;30&lt;/string&gt;
+  &lt;string&gt;31&lt;/string&gt;
+  &lt;string&gt;32&lt;/string&gt;
+  &lt;string&gt;33&lt;/string&gt;
+  &lt;string&gt;34&lt;/string&gt;
+  &lt;string&gt;35&lt;/string&gt;
+  &lt;string&gt;36&lt;/string&gt;
+  &lt;string&gt;37&lt;/string&gt;
+  &lt;string&gt;38&lt;/string&gt;
+  &lt;string&gt;39&lt;/string&gt;
+  &lt;string&gt;40&lt;/string&gt;
+  &lt;string&gt;41&lt;/string&gt;
+  &lt;string&gt;42&lt;/string&gt;
+  &lt;string&gt;43&lt;/string&gt;
+  &lt;string&gt;44&lt;/string&gt;
+  &lt;string&gt;45&lt;/string&gt;
+  &lt;string&gt;46&lt;/string&gt;
+  &lt;string&gt;47&lt;/string&gt;
+  &lt;string&gt;48&lt;/string&gt;
+  &lt;string&gt;49&lt;/string&gt;
+  &lt;string&gt;50&lt;/string&gt;
+  &lt;string&gt;51&lt;/string&gt;
+  &lt;string&gt;52&lt;/string&gt;
+  &lt;string&gt;53&lt;/string&gt;
+  &lt;string&gt;54&lt;/string&gt;
+  &lt;string&gt;55&lt;/string&gt;
+  &lt;string&gt;56&lt;/string&gt;
+  &lt;string&gt;57&lt;/string&gt;
+  &lt;string&gt;58&lt;/string&gt;
+  &lt;string&gt;59&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

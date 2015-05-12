@@ -41,23 +41,12 @@ namespace BackupSoftGraphics
         }
 
         public ConfigWindow()
-        {
-
-        }
+        {}
 
         public ConfigWindow(App app)
         {
-            InitializeComponent();
-            
+            InitializeComponent();          
             Application = app;
-            for(int i = 0; i <= 30;i++)
-                cbPeriod.Items.Add(i);
-
-            cbPeriod.SelectedIndex = 0;
-
-            for (int i = 0; i <= 3; i++)
-                cbKeepSave.Items.Add(i);
-            cbKeepSave.SelectedIndex = 0;
             DataContext = this;
         }
 
@@ -71,7 +60,8 @@ namespace BackupSoftGraphics
         {
             Application.Config.SaveConfiguration();
             Serialization.serializeToXML(GetCheckedNodes(), "folders.xml");
-            SaveCheckedNodes(GetCheckedNodes());
+            Properties.Settings.Default.path = tbPath.Text;
+            Properties.Settings.Default.Save();
             Close();
         }
 
@@ -87,7 +77,10 @@ namespace BackupSoftGraphics
 
 
       
-
+        /// <summary>
+        /// Récupère les noeuds cochés de l'arborescence
+        /// </summary>
+        /// <returns></returns>
         private List<String> GetCheckedNodes()
         {
             var checkedNodes = new List<String>();
@@ -99,22 +92,27 @@ namespace BackupSoftGraphics
             return checkedNodes;
         }
      
+        /// <summary>
+        /// Parcours les noeuds enfant récursivement.
+        /// Si un noeud est coché, il est ajouté à "list"
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="list"></param>
         private void ProcessNode(BackupFolder item,List<string> list)
         {
+            if (item.IsChecked == true)
+                list.Add(item.Fullname);
             foreach (var i in item.Children)
             {
                 if (i.IsChecked == null)
                 {
-                    //if (!folders.Contains(i.Folder.FullName))
-                    list.Add(i.Fullname);
                     ProcessNode(i, list);
                     continue;
                 }
                 
                 if ((bool)i.IsChecked == true)
                 {
-                    //if (!folders.Contains(i.Folder.FullName))
-                     list.Add(i.Fullname);
+                    list.Add(i.Fullname);
                     ProcessNode(i, list);
                 }
             }
@@ -138,6 +136,16 @@ namespace BackupSoftGraphics
             {
                 c.IsChecked = newValue;
                 UpdateChildren(c, newValue);
+            }
+        }
+
+        private void btnParcourir_Click(object sender, RoutedEventArgs e)
+        {
+            var browserDidalog = new System.Windows.Forms.FolderBrowserDialog();
+            if (browserDidalog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (browserDidalog.SelectedPath != "")
+                    tbPath.Text = browserDidalog.SelectedPath; 
             }
         }
 
